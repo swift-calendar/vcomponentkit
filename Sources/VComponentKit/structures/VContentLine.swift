@@ -13,7 +13,7 @@ public struct VContentLine: VEncodable {
 
     public var vEncoded: String {
         let params = value.parameters
-        let raw = "\(key)\(params.map { ";\($0.0)=\($0.1.joined(separator: ","))" }.joined()):\(value.vEncoded)"
+        let raw = "\(key)\(params.map { ";\($0.0)=\"\($0.1.joined(separator: ","))\"" }.joined()):\(value.vEncoded)"
         let chunks = raw.chunks(ofLength: Self.maxLength)
         assert(!chunks.isEmpty)
 
