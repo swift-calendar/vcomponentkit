@@ -1,5 +1,10 @@
+import Foundation
+
 extension String: VPropertyEncodable {
     public var vEncoded: String {
-        self
+        self.replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: ",", with: "\\,")
+            .replacingOccurrences(of: ";", with: "\\;")
+            .replacingOccurrences(of: "\n", with: "\\n")
     }
 }

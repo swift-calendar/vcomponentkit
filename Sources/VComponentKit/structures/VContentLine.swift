@@ -14,9 +14,7 @@ public struct VContentLine: VEncodable {
     public var vEncoded: String {
         let params = value.parameters
         let raw = "\(key)\(params.map { ";\($0.0)=\($0.1.joined(separator: ","))" }.joined()):\(value.vEncoded)"
-        let chunks = raw
-            .chunks(ofLength: Self.maxLength)
-            .map { $0.replacingOccurrences(of: "\n", with: "\\n") }
+        let chunks = raw.chunks(ofLength: Self.maxLength)
         assert(!chunks.isEmpty)
 
         // From the RFC (section 3.1):
