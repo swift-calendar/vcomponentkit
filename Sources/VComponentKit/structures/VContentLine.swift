@@ -13,7 +13,7 @@ public struct VContentLine: VEncodable {
 
     public var vEncoded: String {
         let params = value.parameters
-        let raw = "\(key)\(params.map { ";\($0.0)=\"\($0.1.joined(separator: ","))\"" }.joined()):\(value.vEncoded)"
+        let raw = "\(key)\(params.map { ";\($0.0)=\(quote($0.1.joined(separator: ","), if: $0.1.count > 1))" }.joined()):\(value.vEncoded)"
         let chunks = raw.chunks(ofLength: Self.maxLength)
         assert(!chunks.isEmpty)
 
@@ -44,4 +44,8 @@ public struct VContentLine: VEncodable {
         guard let value = value else { return nil }
         return VContentLine(key: key, value: value)
     }
+}
+
+fileprivate func quote(_ s: String, if predicate: Bool) -> String {
+    predicate ? "\"\(s)\"" : s
 }
