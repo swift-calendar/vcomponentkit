@@ -22,8 +22,8 @@ final class StringUtilitiesTests: XCTestCase {
         let urlStr = "https://www.google.com"
         let url = URL(string: urlStr)!
         
-        XCTAssertEqual(true.vEncoded, "1")
-        XCTAssertEqual(false.vEncoded, "0")
+        XCTAssertEqual(true.vEncoded, "TRUE")
+        XCTAssertEqual(false.vEncoded, "FALSE")
         XCTAssertEqual(randomNum.vEncoded, "\(randomNum)")
         XCTAssertEqual(url.vEncoded, urlStr)
     }
