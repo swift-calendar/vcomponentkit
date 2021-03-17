@@ -4,7 +4,8 @@ import Foundation
 
 final class StringUtilitiesTests: XCTestCase {
     static var allTests = [
-        ("testChunks", testChunks)
+        ("testChunks", testChunks),
+        ("testVProperties", testVProperties)
     ]
 
     func testChunks() throws {
@@ -14,5 +15,16 @@ final class StringUtilitiesTests: XCTestCase {
         XCTAssertEqual("test".chunks(ofLength: 3), ["tes", "t"])
         XCTAssertEqual("test".chunks(ofLength: 4), ["test"])
         XCTAssertEqual("test".chunks(ofLength: 5), ["test"])
+    }
+    
+    func testVProperties() throws {
+        let randomNum = Int.random(in: 0...1000)
+        let urlStr = "https://www.google.com"
+        let url = URL(string: urlStr)!
+        
+        XCTAssertEqual(true.vEncoded, "1")
+        XCTAssertEqual(false.vEncoded, "0")
+        XCTAssertEqual(randomNum.vEncoded, "\(randomNum)")
+        XCTAssertEqual(url.vEncoded, urlStr)
     }
 }
