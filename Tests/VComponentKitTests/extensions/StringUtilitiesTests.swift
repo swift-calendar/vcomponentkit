@@ -36,14 +36,4 @@ final class StringUtilitiesTests: XCTestCase {
         
         XCTAssertEqual(uuid.vEncoded, uuidStr)
     }
-    
-    func testVDuration() throws {
-        let duration1 = VDuration(VDurationDay(weeks: 7))
-        let duration2 = VDuration(VDurationDay(days: 15), VDurationTime(hours: 5, minutes: 0, seconds: 20))
-        let duration3 = VDuration(VDurationTime(hours: 2))
-
-        XCTAssertEqual(duration1.vEncoded, "P7W")
-        XCTAssertEqual(duration2.vEncoded, "P15DT5H0M20S")
-        XCTAssertEqual(duration3.vEncoded, "PT2H")
-    }
 }
